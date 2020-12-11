@@ -6,6 +6,7 @@ import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
@@ -54,4 +55,4 @@ fun View.showOrHide(show: Boolean) {
 
 
 fun Context.getColorCompact(@ColorRes id: Int) = ContextCompat.getColor(this, id)
-fun Fragment.getColorCompact(@ColorRes id: Int) = requireContext().getColorCompact(id)
+fun Context.getDrawableCompact(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)

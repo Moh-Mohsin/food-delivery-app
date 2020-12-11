@@ -9,8 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.FirstFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-    </fragment>
+        tools:layout="@layout/fragment_first"></fragment>
     <fragment
         android:id="@+id/categoryFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.ui.category.CategoryFragment"
@@ -20,5 +19,14 @@
         android:id="@+id/menuFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.ui.menu.MenuFragment"
         android:label="menu_fragment"
-        tools:layout="@layout/menu_fragment" />
+        tools:layout="@layout/menu_fragment">
+        <action
+            android:id="@+id/toCartTabsFragment"
+            app:destination="@id/cartTabsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartTabsFragment"
+        android:name="io.github.moh_mohsin.fooddeliveryapp.ui.cart.CartTabsFragment"
+        android:label="cart_tabs_fragment"
+        tools:layout="@layout/cart_tabs_fragment" />
 </navigation>

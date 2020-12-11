@@ -7,7 +7,16 @@ import io.github.moh_mohsin.fooddeliveryapp.di.KodeinInjector
 import io.reactivex.schedulers.Schedulers
 import org.kodein.di.erased.instance
 
-data class MainState(val itemsInCart: Int = 0) : MavericksState
+enum class MainScreen {
+    FOOD_MENU_SCREEN,
+    CART_SCREEN
+}
+
+data class MainState(
+    val itemsInCart: Int = 0,
+    val mainScreen: MainScreen = MainScreen.FOOD_MENU_SCREEN
+) : MavericksState
+
 class MainViewModel(state: MainState, cartRepository: CartRepository) :
     BaseMvRxViewModel<MainState>(state) {
 
@@ -18,6 +27,10 @@ class MainViewModel(state: MainState, cartRepository: CartRepository) :
                 setState { copy() }
                 copy(itemsInCart = cart()?.items?.size ?: itemsInCart)
             }
+    }
+
+    fun setScreen(mainScreen: MainScreen) {
+        setState { copy(mainScreen = mainScreen) }
     }
 
     companion object : MavericksViewModelFactory<MainViewModel, MainState> {

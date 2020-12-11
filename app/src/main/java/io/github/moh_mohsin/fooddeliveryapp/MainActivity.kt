@@ -5,15 +5,20 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
+import androidx.navigation.findNavController
 import com.airbnb.mvrx.MvRxView
 import com.airbnb.mvrx.viewModel
 import com.airbnb.mvrx.withState
 import com.andremion.counterfab.CounterFab
-import com.google.android.material.snackbar.Snackbar
+import io.github.moh_mohsin.fooddeliveryapp.MainScreen.CART_SCREEN
+import io.github.moh_mohsin.fooddeliveryapp.MainScreen.FOOD_MENU_SCREEN
+import io.github.moh_mohsin.fooddeliveryapp.util.getDrawableCompact
+import io.github.moh_mohsin.fooddeliveryapp.util.toast
 
 class MainActivity : AppCompatActivity(), MvRxView {
 
     private val viewModel: MainViewModel by viewModel()
+    private val navController by lazy { findNavController(R.id.nav_host_fragment) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +28,37 @@ class MainActivity : AppCompatActivity(), MvRxView {
         val fab = findViewById<CounterFab>(R.id.fab)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            when (navController.currentDestination?.id) {
+                R.id.menuFragment -> {
+                    navController.navigate(R.id.cartTabsFragment)
+                }
+                else -> {
+                    toast("click")
+                }
+            }
         }
         viewModel.stateFlow.asLiveData().observe(this) {
-            fab.count = it.itemsInCart
+            when (it.mainScreen) {
+                FOOD_MENU_SCREEN -> {
+                    fab.count = it.itemsInCart
+                    fab.setImageDrawable(getDrawableCompact(R.drawable.ic_baseline_shopping_cart))
+                }
+                CART_SCREEN -> {
+                    fab.count = 0
+                    fab.setImageDrawable(getDrawableCompact(R.drawable.ic_baseline_credit_card))
+                }
+            }
+
+        }
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            when (destination.id) {
+                R.id.cartTabsFragment -> {
+                    viewModel.setScreen(CART_SCREEN)
+                }
+                else -> {
+                    viewModel.setScreen(FOOD_MENU_SCREEN)
+                }
+            }
         }
     }
 
