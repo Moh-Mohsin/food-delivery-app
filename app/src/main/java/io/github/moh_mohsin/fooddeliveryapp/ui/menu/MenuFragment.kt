@@ -1,7 +1,5 @@
 package io.github.moh_mohsin.fooddeliveryapp.ui.menu
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -21,7 +19,6 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
     private val binding by viewBinding(MenuFragmentBinding::bind)
 
     override fun invalidate() = withState(viewModel){ state ->
-        toast("${state.mainCategories}")
         when(state.mainCategories){
             Uninitialized -> {}
             is Loading -> {

@@ -19,6 +19,7 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.foodList.adapter = adapter
+        binding.foodList.isNestedScrollingEnabled = true
     }
 
     private fun onAddToCart(food: Food){
