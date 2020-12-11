@@ -4,6 +4,7 @@ import com.airbnb.mvrx.*
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
 import io.github.moh_mohsin.fooddeliveryapp.data.model.MainCategory
 import io.github.moh_mohsin.fooddeliveryapp.data.model.SubCategory
+import io.github.moh_mohsin.fooddeliveryapp.data.repository.CartRepository
 import io.github.moh_mohsin.fooddeliveryapp.data.repository.FoodRepository
 import io.github.moh_mohsin.fooddeliveryapp.di.KodeinInjector
 import io.reactivex.schedulers.Schedulers
@@ -16,8 +17,9 @@ data class CategoryState(
 
 class CategoryViewModel(
     state: CategoryState,
+    mainCategory: MainCategory,
     foodRepository: FoodRepository,
-    mainCategory: MainCategory
+    private val cartRepository: CartRepository
 ) :
     BaseMvRxViewModel<CategoryState>(state) {
 
@@ -26,6 +28,10 @@ class CategoryViewModel(
             .subscribeOn(Schedulers.io())
             .map { it.filter { food -> food.mainCategory == mainCategory } }
             .execute { copy(menu = it) }
+    }
+
+    fun addToCart(food: Food) {
+        cartRepository.addToCart(food)
     }
 
     fun setFilter(subCategory: SubCategory) {
@@ -47,7 +53,8 @@ class CategoryViewModel(
         ): CategoryViewModel {
             val mainCategory = viewModelContext.args<MainCategory>()
             val foodRepository by KodeinInjector.instance<FoodRepository>()
-            return CategoryViewModel(state, foodRepository, mainCategory)
+            val cartRepository by KodeinInjector.instance<CartRepository>()
+            return CategoryViewModel(state, mainCategory, foodRepository, cartRepository)
         }
     }
 }

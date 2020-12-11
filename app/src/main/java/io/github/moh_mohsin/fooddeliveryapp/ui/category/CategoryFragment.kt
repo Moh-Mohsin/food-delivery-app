@@ -1,8 +1,8 @@
 package io.github.moh_mohsin.fooddeliveryapp.ui.category
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.airbnb.mvrx.*
 import io.github.moh_mohsin.fooddeliveryapp.R
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
@@ -22,15 +22,16 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
     }
 
     private fun onAddToCart(food: Food){
-        toast("$food")
+        viewModel.addToCart(food)
     }
 
     override fun invalidate() = withState(viewModel){ state ->
-        when(state.menu){
+        when (state.menu) {
             Uninitialized -> toast("Uninitialized")
-            is Loading -> toast("Loading")
+            is Loading -> {
+//                toast("Loading")
+            }
             is Success -> {
-                toast(state.menu()!!.size.toString())
                 adapter.submitList(state.menu()!!)
             }
             is Fail -> toast("Fail")

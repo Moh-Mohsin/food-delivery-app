@@ -1,22 +1,33 @@
 package io.github.moh_mohsin.fooddeliveryapp
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.asLiveData
+import com.airbnb.mvrx.MvRxView
+import com.airbnb.mvrx.viewModel
+import com.airbnb.mvrx.withState
+import com.andremion.counterfab.CounterFab
+import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MvRxView {
+
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
+        val fab = findViewById<CounterFab>(R.id.fab)
+
+        fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
+        }
+        viewModel.stateFlow.asLiveData().observe(this) {
+            fab.count = it.itemsInCart
         }
     }
 
@@ -34,5 +45,9 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun invalidate() = withState(viewModel) {
+        //fixme: figure out why this is not triggered
     }
 }
