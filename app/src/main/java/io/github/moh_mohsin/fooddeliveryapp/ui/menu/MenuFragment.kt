@@ -6,7 +6,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.*
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.github.moh_mohsin.fooddeliveryapp.R
@@ -24,31 +23,35 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+        val sliderAdapter = SliderAdapter()
+        sliderAdapter.renewItems((1..3).map { SliderItem.SliderItemRes(R.drawable.ic_launcher_background) })
+        binding.imageSlider.setSliderAdapter(sliderAdapter)
 
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-//                    BottomSheetBehavior.STATE_DRAGGING -> {
-//                        toast("STATE_DRAGGING")
+//        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+//
+//        bottomSheetBehavior.addBottomSheetCallback(object :
+//            BottomSheetBehavior.BottomSheetCallback() {
+//            override fun onStateChanged(bottomSheet: View, newState: Int) {
+//                when (newState) {
+////                    BottomSheetBehavior.STATE_DRAGGING -> {
+////                        toast("STATE_DRAGGING")
+////                    }
+////                    BottomSheetBehavior.STATE_SETTLING -> {
+////                        toast("STATE_COLLAPSED")
+////                    }
+//                    BottomSheetBehavior.STATE_EXPANDED -> {
+//                        toast("STATE_EXPANDED")
 //                    }
-//                    BottomSheetBehavior.STATE_SETTLING -> {
+//                    BottomSheetBehavior.STATE_COLLAPSED -> {
 //                        toast("STATE_COLLAPSED")
 //                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        toast("STATE_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        toast("STATE_COLLAPSED")
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//                toast("$slideOffset")
-            }
-        })
+//                }
+//            }
+//
+//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+////                toast("$slideOffset")
+//            }
+//        })
     }
 
     override fun invalidate() = withState(viewModel) { state ->
