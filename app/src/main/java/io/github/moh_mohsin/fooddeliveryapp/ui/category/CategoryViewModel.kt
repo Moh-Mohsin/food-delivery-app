@@ -12,8 +12,20 @@ import org.kodein.di.erased.instance
 
 data class CategoryState(
     val menu: Async<List<Food>> = Uninitialized,
-    val filter: Set<SubCategory> = setOf()
-) : MavericksState
+    val filters: Set<SubCategory> = setOf(),
+) : MavericksState {
+    val filteredMenu: List<Food>
+        get() {
+            return if (filters.isEmpty())
+                menu() ?: listOf()
+            else
+                menu()?.filter {
+                    filters.all { subCat ->
+                        subCat in it.subCategories
+                    }
+                } ?: listOf()
+        }
+}
 
 class CategoryViewModel(
     state: CategoryState,
@@ -34,15 +46,15 @@ class CategoryViewModel(
         cartRepository.addToCart(food)
     }
 
-    fun setFilter(subCategory: SubCategory) {
+    fun addFilter(subCategory: SubCategory) {
         setState {
-            copy(filter = filter + subCategory)
+            copy(filters = filters + subCategory)
         }
     }
 
     fun removeFilter(subCategory: SubCategory) {
         setState {
-            copy(filter = filter - subCategory)
+            copy(filters = filters - subCategory)
         }
     }
 

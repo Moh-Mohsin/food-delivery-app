@@ -12,7 +12,7 @@ class FoodRepositoryImpl : FoodRepository {
         dummyMenu
     }
 }
-var id = 0;
+var id = 0
 val dummyMenu = listOf(
     Food(
         id++,
@@ -40,7 +40,7 @@ val dummyMenu = listOf(
         "Moarella, Peperoni, Tomatoes, BBQ sauce",
         "150 grams, 35 cm",
         MainCategory.PIZZA,
-        listOf(),
+        listOf(SubCategory.VEGAN), //not sure if this is vegan but well.. gotta test this
         "https://www.tokyoweekender.com/wp-content/uploads/2015/03/SpicyDeluxe_L_13R04.png",
         55.00
     ),
