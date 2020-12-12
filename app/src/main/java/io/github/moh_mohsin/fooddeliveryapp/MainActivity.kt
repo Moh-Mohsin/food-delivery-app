@@ -3,7 +3,6 @@ package io.github.moh_mohsin.fooddeliveryapp
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.NavHostFragment
@@ -11,7 +10,6 @@ import com.airbnb.mvrx.MvRxView
 import com.airbnb.mvrx.viewModel
 import com.airbnb.mvrx.withState
 import com.andremion.counterfab.CounterFab
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.CART_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.FOOD_MENU_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.util.getDrawableCompact
@@ -42,31 +40,6 @@ class MainActivity : AppCompatActivity(), MvRxView {
             }
         }
 
-        val bottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_sheet_card))
-
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                when (newState) {
-//                    BottomSheetBehavior.STATE_DRAGGING -> {
-//                        toast("STATE_DRAGGING")
-//                    }
-//                    BottomSheetBehavior.STATE_SETTLING -> {
-//                        toast("STATE_COLLAPSED")
-//                    }
-                    BottomSheetBehavior.STATE_EXPANDED -> {
-                        toast("STATE_EXPANDED")
-                    }
-                    BottomSheetBehavior.STATE_COLLAPSED -> {
-                        toast("STATE_COLLAPSED")
-                    }
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-//                toast("$slideOffset")
-            }
-        })
 
         viewModel.stateFlow.asLiveData().observe(this) {
             when (it.mainScreen) {

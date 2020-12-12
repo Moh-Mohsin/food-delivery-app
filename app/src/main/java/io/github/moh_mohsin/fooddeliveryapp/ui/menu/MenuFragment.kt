@@ -1,9 +1,12 @@
 package io.github.moh_mohsin.fooddeliveryapp.ui.menu
 
+import android.os.Bundle
+import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.*
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import io.github.moh_mohsin.fooddeliveryapp.R
@@ -18,9 +21,40 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
     private val viewModel: MenuViewModel by fragmentViewModel()
     private val binding by viewBinding(MenuFragmentBinding::bind)
 
-    override fun invalidate() = withState(viewModel){ state ->
-        when(state.mainCategories){
-            Uninitialized -> {}
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+
+        bottomSheetBehavior.addBottomSheetCallback(object :
+            BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+//                    BottomSheetBehavior.STATE_DRAGGING -> {
+//                        toast("STATE_DRAGGING")
+//                    }
+//                    BottomSheetBehavior.STATE_SETTLING -> {
+//                        toast("STATE_COLLAPSED")
+//                    }
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+                        toast("STATE_EXPANDED")
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+                        toast("STATE_COLLAPSED")
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+//                toast("$slideOffset")
+            }
+        })
+    }
+
+    override fun invalidate() = withState(viewModel) { state ->
+        when (state.mainCategories) {
+            Uninitialized -> {
+            }
             is Loading -> {
                 toast("loading...")
             } //TODO: show loading
@@ -33,12 +67,12 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
                         newTab.text = it.toString()
                         addTab(newTab)
                     }
-                    if (categories.size > 3){
+                    if (categories.size > 3) {
                         tabMode = TabLayout.MODE_AUTO
                     }
                 }
                 binding.viewPager2.adapter = PagerAdapter(this, categories)
-                TabLayoutMediator(binding.tabLayout, binding.viewPager2){ tab, position ->
+                TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
                     tab.text = categories[position].toString()
                 }.attach()
             }
