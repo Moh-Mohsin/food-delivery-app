@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartTabsFragment"
-        android:name="io.github.moh_mohsin.fooddeliveryapp.ui.cart.CartTabsFragment"
+        android:name="io.github.moh_mohsin.fooddeliveryapp.ui.carttabs.CartTabsFragment"
         android:label="cart_tabs_fragment"
         tools:layout="@layout/cart_tabs_fragment" />
 </navigation>

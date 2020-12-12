@@ -24,7 +24,6 @@ class MainViewModel(state: MainState, cartRepository: CartRepository) :
         cartRepository.getCart()
             .observeOn(Schedulers.io())
             .execute { cart: Async<Cart> ->
-                setState { copy() }
                 copy(itemsInCart = cart()?.items?.size ?: itemsInCart)
             }
     }

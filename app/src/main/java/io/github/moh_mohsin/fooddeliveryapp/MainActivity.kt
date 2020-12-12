@@ -6,7 +6,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.asLiveData
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.airbnb.mvrx.MvRxView
 import com.airbnb.mvrx.viewModel
 import com.airbnb.mvrx.withState
@@ -20,7 +20,9 @@ import io.github.moh_mohsin.fooddeliveryapp.util.toast
 class MainActivity : AppCompatActivity(), MvRxView {
 
     private val viewModel: MainViewModel by viewModel()
-    private val navController by lazy { findNavController(R.id.nav_host_fragment) }
+    private val navController by lazy {
+        (supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment).navController
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,6 +110,7 @@ class MainActivity : AppCompatActivity(), MvRxView {
     }
 
     override fun invalidate() = withState(viewModel) {
+        toast("MainActivity invalidate")
         //fixme: figure out why this is not triggered
     }
 }
