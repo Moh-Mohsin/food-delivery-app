@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.transition.TransitionManager
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.airbnb.mvrx.*
 import io.github.moh_mohsin.fooddeliveryapp.R
 import io.github.moh_mohsin.fooddeliveryapp.databinding.CartFragmentBinding
@@ -33,6 +34,9 @@ class CartFragment : Fragment(R.layout.cart_fragment), MvRxView {
                 TransitionManager.beginDelayedTransition(binding.root)
                 adapter.submitList(it.cart()!!.items)
                 binding.total.text = getString(R.string.price, it.total, "USD")
+                if (it.cart()!!.items.isEmpty()) {
+                    findNavController().popBackStack()
+                }
             }
             is Fail -> {
                 toast(it.cart.error.toString())

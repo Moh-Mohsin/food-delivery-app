@@ -8,6 +8,7 @@ import com.airbnb.mvrx.MvRxView
 import com.airbnb.mvrx.viewModel
 import com.airbnb.mvrx.withState
 import com.andremion.counterfab.CounterFab
+import com.google.android.material.snackbar.Snackbar
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.CART_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.FOOD_MENU_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.util.getDrawableCompact
@@ -27,18 +28,6 @@ class MainActivity : AppCompatActivity(), MvRxView {
 
         val fab = findViewById<CounterFab>(R.id.fab)
 
-        fab.setOnClickListener { view ->
-            when (navController.currentDestination?.id) {
-                R.id.menuFragment -> {
-                    navController.navigate(R.id.action_global_cartTabsFragment)
-                }
-                else -> {
-                    toast("click")
-                }
-            }
-        }
-
-
         viewModel.stateFlow.asLiveData().observe(this) {
             when (it.mainScreen) {
                 FOOD_MENU_SCREEN -> {
@@ -51,7 +40,22 @@ class MainActivity : AppCompatActivity(), MvRxView {
                 }
             }
 
+            fab.setOnClickListener { view ->
+                when (it.mainScreen) {
+                    FOOD_MENU_SCREEN -> {
+                        if (it.itemsInCart > 0)
+                            navController.navigate(R.id.action_global_cartTabsFragment)
+                        else
+                            Snackbar.make(fab, "Add items to Cart first", Snackbar.LENGTH_SHORT)
+                                .show()
+                    }
+                    CART_SCREEN -> {
+                        toast("Payment...")
+                    }
+                }
+            }
         }
+
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             when (destination.id) {
                 R.id.cartTabsFragment -> {

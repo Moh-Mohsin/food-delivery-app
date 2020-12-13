@@ -26,32 +26,6 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
         val sliderAdapter = SliderAdapter()
         sliderAdapter.renewItems((1..3).map { SliderItem.SliderItemRes(R.drawable.ic_launcher_background) })
         binding.imageSlider.setSliderAdapter(sliderAdapter)
-
-//        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
-//
-//        bottomSheetBehavior.addBottomSheetCallback(object :
-//            BottomSheetBehavior.BottomSheetCallback() {
-//            override fun onStateChanged(bottomSheet: View, newState: Int) {
-//                when (newState) {
-////                    BottomSheetBehavior.STATE_DRAGGING -> {
-////                        toast("STATE_DRAGGING")
-////                    }
-////                    BottomSheetBehavior.STATE_SETTLING -> {
-////                        toast("STATE_COLLAPSED")
-////                    }
-//                    BottomSheetBehavior.STATE_EXPANDED -> {
-//                        toast("STATE_EXPANDED")
-//                    }
-//                    BottomSheetBehavior.STATE_COLLAPSED -> {
-//                        toast("STATE_COLLAPSED")
-//                    }
-//                }
-//            }
-//
-//            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-////                toast("$slideOffset")
-//            }
-//        })
     }
 
     override fun invalidate() = withState(viewModel) { state ->
