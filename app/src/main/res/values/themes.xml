@@ -23,4 +23,13 @@
     <style name="Theme.FoodDeliveryApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FoodDeliveryApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.FoodDeliveryApp.Chip.Filter" parent="Widget.MaterialComponents.Chip.Filter">
+        <item name="android:textColor">@color/grey</item>
+        <item name="chipStrokeColor">@color/grey</item>
+        <item name="chipBackgroundColor">@color/white</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="textStartPadding">16dp</item>
+        <item name="textEndPadding">16dp</item>
+    </style>
 </resources>

@@ -19,7 +19,7 @@
     <string name="information">Information</string>
     <string name="delivery_is_free">Delivery is free</string>
     <string name="value">Value:</string>
-    <string name="filters">Filters</string>
+    <string name="filters">FILTERS</string>
     <string name="menu">Menu</string>
     <string name="no_match_for_filters">No match for current filters</string>
 </resources>

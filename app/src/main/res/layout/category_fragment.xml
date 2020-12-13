@@ -26,6 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
+        android:textColor="@color/grey"
+        android:textStyle="bold"
         android:text="@string/filters"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,14 +43,14 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/spicy_chip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Theme.FoodDeliveryApp.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Spicy" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/vegan_chip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            style="@style/Theme.FoodDeliveryApp.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Vegan" />
