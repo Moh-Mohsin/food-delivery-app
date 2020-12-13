@@ -1,63 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
-    android:paddingStart="@dimen/food_menu_margin"
-    android:paddingEnd="@dimen/food_menu_margin"
     tools:context=".ui.category.CategoryFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/food_list"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:orientation="vertical"
-        android:overScrollMode="never"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:listitem="@layout/food_item" />
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:paddingStart="@dimen/food_menu_margin"
+        android:paddingEnd="@dimen/food_menu_margin">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/filters"
-        android:textColor="@color/grey"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/food_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:listitem="@layout/food_item" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/filter_chips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView3"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/spicy_chip"
-            style="@style/Theme.FoodDeliveryApp.Chip.Filter"
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Spicy" />
+            android:layout_marginTop="24dp"
+            android:text="@string/filters"
+            android:textColor="@color/grey"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/vegan_chip"
-            style="@style/Theme.FoodDeliveryApp.Chip.Filter"
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/filter_chips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vegan" />
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toTopOf="@+id/textView3">
 
-    </com.google.android.material.chip.ChipGroup>
+            <io.github.moh_mohsin.fooddeliveryapp.ui.category.CustomChip
+                android:id="@+id/spicy_chip"
+                style="@style/Theme.FoodDeliveryApp.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Spicy" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <io.github.moh_mohsin.fooddeliveryapp.ui.category.CustomChip
+                android:id="@+id/vegan_chip"
+                style="@style/Theme.FoodDeliveryApp.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vegan" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
