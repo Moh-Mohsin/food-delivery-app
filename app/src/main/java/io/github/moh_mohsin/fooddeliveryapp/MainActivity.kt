@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), MvRxView {
         fab.setOnClickListener { view ->
             when (navController.currentDestination?.id) {
                 R.id.menuFragment -> {
-                    navController.navigate(R.id.cartTabsFragment)
+                    navController.navigate(R.id.action_global_cartTabsFragment)
                 }
                 else -> {
                     toast("click")

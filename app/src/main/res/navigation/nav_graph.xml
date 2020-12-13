@@ -19,14 +19,17 @@
         android:id="@+id/menuFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.ui.menu.MenuFragment"
         android:label="menu_fragment"
-        tools:layout="@layout/menu_fragment">
-        <action
-            android:id="@+id/toCartTabsFragment"
-            app:destination="@id/cartTabsFragment" />
-    </fragment>
+        tools:layout="@layout/menu_fragment" />
     <fragment
         android:id="@+id/cartTabsFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.ui.carttabs.CartTabsFragment"
         android:label="cart_tabs_fragment"
         tools:layout="@layout/cart_tabs_fragment" />
+    <action
+        android:id="@+id/action_global_cartTabsFragment"
+        app:destination="@id/cartTabsFragment"
+        app:enterAnim="@anim/slide_up_and_fade_in"
+        app:exitAnim="@anim/fade_exit"
+        app:popEnterAnim="@anim/fade_enter"
+        app:popExitAnim="@anim/slide_down_and_fade_out" />
 </navigation>

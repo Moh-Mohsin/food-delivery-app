@@ -8,7 +8,7 @@ import io.reactivex.Observable
 
 class FoodRepositoryImpl : FoodRepository {
     override fun getMenu() = Observable.fromCallable {
-        Thread.sleep(1000)
+        //TODO: put some delay
         dummyMenu
     }
 }
