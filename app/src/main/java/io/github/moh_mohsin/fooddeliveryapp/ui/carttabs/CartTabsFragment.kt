@@ -2,7 +2,6 @@ package io.github.moh_mohsin.fooddeliveryapp.ui.carttabs
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup.MarginLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -46,10 +45,3 @@ class CartTabsFragment : Fragment(R.layout.cart_tabs_fragment) {
     }
 }
 
-fun View.setMargins(l: Int, t: Int, r: Int, b: Int) {
-    if (layoutParams is MarginLayoutParams) {
-        val p = layoutParams as MarginLayoutParams
-        p.setMargins(l, t, r, b)
-        requestLayout()
-    }
-}

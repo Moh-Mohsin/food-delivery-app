@@ -26,6 +26,10 @@ class MainActivity : AppCompatActivity(), MvRxView {
         setContentView(R.layout.activity_main)
 //        setSupportActionBar(findViewById(R.id.toolbar))
 
+
+//        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+//        window.statusBarColor = Color.TRANSPARENT
+
         val fab = findViewById<CounterFab>(R.id.fab)
 
         viewModel.stateFlow.asLiveData().observe(this) {

@@ -6,11 +6,6 @@
     app:startDestination="@id/menuFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="io.github.moh_mohsin.fooddeliveryapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first"></fragment>
-    <fragment
         android:id="@+id/categoryFragment"
         android:name="io.github.moh_mohsin.fooddeliveryapp.ui.category.CategoryFragment"
         android:label="menu_fragment"

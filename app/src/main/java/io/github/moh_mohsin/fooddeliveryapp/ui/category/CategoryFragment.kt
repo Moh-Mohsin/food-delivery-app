@@ -49,7 +49,6 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
 //                toast("Loading")
             }
             is Success -> {
-                adapter.submitList(state.filteredMenu)
                 state.filters.forEach {
                     when (it) {
                         SubCategory.VEGAN -> {
@@ -64,8 +63,12 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
                         }
                     }
                 }
+                adapter.submitList(state.filteredMenu)
+                if (state.filteredMenu.isEmpty()) {
+                    toast(R.string.no_match_for_filters)
+                }
             }
-            is Fail -> toast("Fail")
+            is Fail -> toast("Failed")
         }
     }
 }
