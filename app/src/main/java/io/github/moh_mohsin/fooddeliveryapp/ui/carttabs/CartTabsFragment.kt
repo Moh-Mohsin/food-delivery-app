@@ -23,7 +23,7 @@ class CartTabsFragment : Fragment(R.layout.cart_tabs_fragment) {
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             tab.text = when (position) {
                 0 -> getString(R.string.cart)
-                1 -> getString(R.string.order)
+                1 -> getString(R.string.orders)
                 2 -> getString(R.string.information)
                 else -> error("Only 3 fragments in cart menu")
             }
