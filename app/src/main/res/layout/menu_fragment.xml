@@ -86,11 +86,14 @@
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"
+                    style="@style/AppTabLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewPager2"
+                    android:paddingStart="@dimen/food_menu_margin"
+                    android:paddingEnd="@dimen/food_menu_margin"
                     android:layout_width="match_parent"
                     android:layout_weight="1"
                     android:layout_height="0dp" />

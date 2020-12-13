@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.airbnb.mvrx.*
 import io.github.moh_mohsin.fooddeliveryapp.R
-import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
 import io.github.moh_mohsin.fooddeliveryapp.data.model.SubCategory
 import io.github.moh_mohsin.fooddeliveryapp.databinding.CategoryFragmentBinding
 import io.github.moh_mohsin.fooddeliveryapp.util.toast
@@ -15,7 +14,7 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
 
     private val viewModel: CategoryViewModel by fragmentViewModel()
     private val binding by viewBinding(CategoryFragmentBinding::bind)
-    private val adapter = FoodListAdapter(::onAddToCart)
+    private val adapter by lazy { FoodListAdapter(viewModel::addToCart) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -36,10 +35,6 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
                 viewModel.removeFilter(SubCategory.VEGAN)
             }
         }
-    }
-
-    private fun onAddToCart(food: Food){
-        viewModel.addToCart(food)
     }
 
     override fun invalidate() = withState(viewModel){ state ->

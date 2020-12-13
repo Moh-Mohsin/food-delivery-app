@@ -14,6 +14,7 @@ import io.github.moh_mohsin.fooddeliveryapp.databinding.MenuFragmentBinding
 import io.github.moh_mohsin.fooddeliveryapp.ui.category.CategoryFragment
 import io.github.moh_mohsin.fooddeliveryapp.util.toast
 import io.github.moh_mohsin.fooddeliveryapp.util.viewBinding
+import java.util.*
 
 class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
 
@@ -39,10 +40,8 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
                 val categories = state.mainCategories()!!
                 binding.tabLayout.apply {
                     removeAllTabs()
-                    categories.forEach {
-                        val newTab = newTab()
-                        newTab.text = it.toString()
-                        addTab(newTab)
+                    repeat(categories.size) {
+                        addTab(newTab())
                     }
                     if (categories.size > 3) {
                         tabMode = TabLayout.MODE_AUTO
@@ -50,7 +49,9 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
                 }
                 binding.viewPager2.adapter = PagerAdapter(this, categories)
                 TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-                    tab.text = categories[position].toString()
+                    tab.text = categories[position].toString().toLowerCase(Locale.ROOT).capitalize(
+                        Locale.ROOT
+                    )
                 }.attach()
             }
             is Fail -> {
