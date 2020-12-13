@@ -25,7 +25,7 @@ class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
         super.onViewCreated(view, savedInstanceState)
 
         val sliderAdapter = SliderAdapter()
-        sliderAdapter.renewItems((1..3).map { SliderItem.SliderItemRes(R.drawable.fat_documentary_watch_now) })
+        sliderAdapter.renewItems((1..3).map { SliderItem.SliderItemRes(R.drawable.supersale) })
         binding.imageSlider.setSliderAdapter(sliderAdapter)
     }
 

@@ -6,13 +6,11 @@ import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.NavHostFragment
 import com.airbnb.mvrx.MvRxView
 import com.airbnb.mvrx.viewModel
-import com.airbnb.mvrx.withState
 import com.andremion.counterfab.CounterFab
 import com.google.android.material.snackbar.Snackbar
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.CART_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.MainScreen.FOOD_MENU_SCREEN
 import io.github.moh_mohsin.fooddeliveryapp.util.getDrawableCompact
-import io.github.moh_mohsin.fooddeliveryapp.util.toast
 
 class MainActivity : AppCompatActivity(), MvRxView {
 
@@ -24,11 +22,6 @@ class MainActivity : AppCompatActivity(), MvRxView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//        setSupportActionBar(findViewById(R.id.toolbar))
-
-
-//        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-//        window.statusBarColor = Color.TRANSPARENT
 
         val fab = findViewById<CounterFab>(R.id.fab)
 
@@ -73,8 +66,5 @@ class MainActivity : AppCompatActivity(), MvRxView {
         }
     }
 
-    override fun invalidate() = withState(viewModel) {
-        toast("MainActivity invalidate")
-        //fixme: figure out why this is not triggered
-    }
+    override fun invalidate() {}
 }
