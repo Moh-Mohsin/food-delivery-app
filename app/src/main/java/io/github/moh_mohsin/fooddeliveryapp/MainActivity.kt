@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity(), MvRxView {
                                 .show()
                     }
                     CART_SCREEN -> {
-                        toast("Payment...")
+                        Snackbar.make(fab, "Payment...", Snackbar.LENGTH_SHORT)
+                            .show()
                     }
                 }
             }
