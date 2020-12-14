@@ -17,6 +17,16 @@ var id = 0
 val dummyMenu = listOf(
     Food(
         id++,
+        "Hawaiian",
+        "Chicken, Mozarella, Pineapple, Domino's sauce",
+        "150 grams, 35 cm",
+        MainCategory.PIZZA,
+        listOf(),
+        "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pizza-hut-thin-n-crispy-hawaiian-chicken-1538502865.jpg",
+        55.00
+    ),
+    Food(
+        id++,
         "Deluxe",
         "Chicken, ham, pepperoni, tomato sauce, spicy chorizo and mazzarella",
         "150 grams, 35 cm",
@@ -27,22 +37,12 @@ val dummyMenu = listOf(
     ),
     Food(
         id++,
-        "Hawaiian",
-        "Chicken, Mozarella, Pineapple, Domino's sauce",
-        "150 grams, 35 cm",
-        MainCategory.PIZZA,
-        listOf(),
-        "https://www.tokyoweekender.com/wp-content/uploads/2015/03/SpicyDeluxe_L_13R04.png",
-        55.00
-    ),
-    Food(
-        id++,
         "Pepperoni",
         "Moarella, Peperoni, Tomatoes, BBQ sauce",
         "150 grams, 35 cm",
         MainCategory.PIZZA,
         listOf(SubCategory.VEGAN), //not sure if this is vegan but well.. gotta test this
-        "https://www.tokyoweekender.com/wp-content/uploads/2015/03/SpicyDeluxe_L_13R04.png",
+        "https://static.onecms.io/wp-content/uploads/sites/19/2014/07/10/pepperoni-pizza-ck-x.jpg",
         55.00
     ),
     Food(
@@ -62,7 +62,7 @@ val dummyMenu = listOf(
         "930 grams, 38 pieces",
         MainCategory.SUSHI,
         listOf(),
-        "https://s2.narvii.com/image/jcsn7scu7jslgqqfobqh6bnw75htclx3_hq.jpg",
+        "https://i1.wp.com/www.angsarap.net/wp-content/uploads/2018/02/California-Maki-Wide.jpg?fit=1080%2C720&ssl=1",
         60.00
     ),
     Food(
