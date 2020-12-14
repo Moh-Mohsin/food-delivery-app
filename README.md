@@ -7,6 +7,8 @@ Based on [this dribbble design](https://dribbble.com/shots/6571883-Food-Delivery
 * [MvRx](https://github.com/airbnb/MvRx)
 * RxJava
 * Kodein (for DI)
+* Navigation Component
+
 
 ## Data
-A repository pattern is used with a mock sources
+A repository pattern is used with mock sources
