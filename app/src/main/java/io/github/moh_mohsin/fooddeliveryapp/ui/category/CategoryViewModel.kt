@@ -17,9 +17,10 @@ data class CategoryState(
     val filteredMenu: List<Food>
         get() {
             return if (filters.isEmpty())
-                menu() ?: listOf()
+                menu() ?: listOf() // no filters, return all items or empty if null
             else
                 menu()?.filter {
+                    // make sure all filters are satisfied
                     filters.all { subCat ->
                         subCat in it.subCategories
                     }

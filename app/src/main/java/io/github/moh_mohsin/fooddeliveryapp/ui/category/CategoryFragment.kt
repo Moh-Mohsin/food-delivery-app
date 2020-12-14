@@ -37,24 +37,20 @@ class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
         }
     }
 
-    override fun invalidate() = withState(viewModel){ state ->
+    override fun invalidate() = withState(viewModel) { state ->
         when (state.menu) {
-            Uninitialized -> toast("Uninitialized")
+            Uninitialized -> {
+            }
             is Loading -> {
-//                toast("Loading")
             }
             is Success -> {
                 state.filters.forEach {
                     when (it) {
                         SubCategory.VEGAN -> {
-                            if (!binding.veganChip.isChecked) {
-                                binding.veganChip.isChecked = true
-                            }
+                            binding.veganChip.isChecked = true
                         }
                         SubCategory.SPICY -> {
-                            if (!binding.spicyChip.isChecked) {
-                                binding.spicyChip.isChecked = true
-                            }
+                            binding.spicyChip.isChecked = true
                         }
                     }
                 }

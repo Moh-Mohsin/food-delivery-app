@@ -13,6 +13,7 @@ import io.github.moh_mohsin.fooddeliveryapp.ui.carttabs.info.InfoFragment
 import io.github.moh_mohsin.fooddeliveryapp.ui.carttabs.orders.OrderFragment
 import io.github.moh_mohsin.fooddeliveryapp.util.viewBinding
 
+// This fragment contains contains tabs for Cart, Orders and Info
 class CartTabsFragment : Fragment(R.layout.cart_tabs_fragment) {
     private val binding by viewBinding(CartTabsFragmentBinding::bind)
 
