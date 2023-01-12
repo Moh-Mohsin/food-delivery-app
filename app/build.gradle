@@ -5,7 +5,6 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
 
     defaultConfig {
         applicationId "io.github.moh_mohsin.fooddeliveryapp"
@@ -46,8 +45,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
 
-    implementation 'com.airbnb.android:mvrx-rxjava2:2.0.0-beta3'
-
+    implementation 'com.airbnb.android:mavericks:2.6.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
     // Kodein
     implementation "org.kodein.di:kodein-di-core:6.4.1"

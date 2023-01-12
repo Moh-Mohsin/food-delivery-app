@@ -5,7 +5,7 @@ import io.github.moh_mohsin.fooddeliveryapp.data.model.Cart
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
 import io.github.moh_mohsin.fooddeliveryapp.data.repository.CartRepository
 import io.github.moh_mohsin.fooddeliveryapp.di.KodeinInjector
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import org.kodein.di.erased.instance
 
 data class CartState(val cart: Async<Cart> = Uninitialized) : MavericksState {
@@ -14,19 +14,21 @@ data class CartState(val cart: Async<Cart> = Uninitialized) : MavericksState {
 }
 
 class CartViewModel(state: CartState, private val cartRepository: CartRepository) :
-    BaseMvRxViewModel<CartState>(state) {
+    MavericksViewModel<CartState>(state) {
     // TODO: Implement the ViewModel
 
     init {
         cartRepository.getCart()
-            .observeOn(Schedulers.io())
+//            .observeOn(Schedulers.io())
             .execute { cart: Async<Cart> ->
                 copy(cart = cart)
             }
     }
 
     fun removeFromCart(food: Food) {
-        cartRepository.removeFromCart(food)
+        viewModelScope.launch {
+            cartRepository.removeFromCart(food)
+        }
     }
 
     companion object : MavericksViewModelFactory<CartViewModel, CartState> {

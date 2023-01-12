@@ -4,7 +4,6 @@ import com.airbnb.mvrx.*
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Cart
 import io.github.moh_mohsin.fooddeliveryapp.data.repository.CartRepository
 import io.github.moh_mohsin.fooddeliveryapp.di.KodeinInjector
-import io.reactivex.schedulers.Schedulers
 import org.kodein.di.erased.instance
 
 enum class MainScreen {
@@ -18,11 +17,11 @@ data class MainState(
 ) : MavericksState
 
 class MainViewModel(state: MainState, cartRepository: CartRepository) :
-    BaseMvRxViewModel<MainState>(state) {
+    MavericksViewModel<MainState>(state) {
 
     init {
         cartRepository.getCart()
-            .observeOn(Schedulers.io())
+//            .observeOn(Schedulers.io())
             .execute { cart: Async<Cart> ->
                 copy(itemsInCart = cart()?.items?.size ?: itemsInCart)
             }

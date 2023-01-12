@@ -4,12 +4,13 @@ import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
 import io.github.moh_mohsin.fooddeliveryapp.data.model.MainCategory
 import io.github.moh_mohsin.fooddeliveryapp.data.model.SubCategory
 import io.github.moh_mohsin.fooddeliveryapp.data.source.FoodDataSource
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 class MockFoodDataSource : FoodDataSource {
-    override fun getMenu() = Observable.fromCallable {
+    override fun getMenu(): Flow<List<Food>> = flow {
         //TODO: put some delay
-        dummyMenu
+        emit(dummyMenu)
     }
 }
 

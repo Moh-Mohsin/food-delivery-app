@@ -3,30 +3,29 @@ package io.github.moh_mohsin.fooddeliveryapp.data.source.mock
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Cart
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
 import io.github.moh_mohsin.fooddeliveryapp.data.source.CartDataSource
-import io.reactivex.Observable
-import io.reactivex.schedulers.Schedulers
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 class MockCartDataSource : CartDataSource {
 
     private val items = mutableMapOf<Food, Int>()
-    private val itemsSubject = BehaviorSubject.create<Cart>()
+    private val itemsFlow = MutableSharedFlow<Cart>()
 
-    override fun getCart(): Observable<Cart> {
-        return itemsSubject.observeOn(Schedulers.io())
+    override fun getCart(): Flow<Cart> {
+        return itemsFlow
     }
 
-    override fun addToCart(food: Food): Cart {
-        items[food] = items[food] ?: 0 + 1
+    override suspend fun addToCart(food: Food): Cart {
+        items[food] = (items[food] ?: 0) + 1
         val cart = Cart(items.map { it.key to it.value })
-        itemsSubject.onNext(cart)
+        itemsFlow.emit(cart)
         return cart
     }
 
-    override fun removeFromCart(food: Food): Cart {
+    override suspend fun removeFromCart(food: Food): Cart {
         items.remove(food)
         val cart = Cart(items.map { it.key to it.value })
-        itemsSubject.onNext(cart)
+        itemsFlow.emit(cart)
         return cart
     }
 

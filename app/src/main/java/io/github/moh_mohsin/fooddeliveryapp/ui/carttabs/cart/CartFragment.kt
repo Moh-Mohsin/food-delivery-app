@@ -11,7 +11,7 @@ import io.github.moh_mohsin.fooddeliveryapp.databinding.CartFragmentBinding
 import io.github.moh_mohsin.fooddeliveryapp.util.toast
 import io.github.moh_mohsin.fooddeliveryapp.util.viewBinding
 
-class CartFragment : Fragment(R.layout.cart_fragment), MvRxView {
+class CartFragment : Fragment(R.layout.cart_fragment), MavericksView {
 
     private val viewModel: CartViewModel by fragmentViewModel()
     private val binding by viewBinding(CartFragmentBinding::bind)

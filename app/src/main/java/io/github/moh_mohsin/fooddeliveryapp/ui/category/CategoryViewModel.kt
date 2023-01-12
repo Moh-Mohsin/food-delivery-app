@@ -7,7 +7,8 @@ import io.github.moh_mohsin.fooddeliveryapp.data.model.SubCategory
 import io.github.moh_mohsin.fooddeliveryapp.data.repository.CartRepository
 import io.github.moh_mohsin.fooddeliveryapp.data.repository.FoodRepository
 import io.github.moh_mohsin.fooddeliveryapp.di.KodeinInjector
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import org.kodein.di.erased.instance
 
 data class CategoryState(
@@ -34,17 +35,19 @@ class CategoryViewModel(
     foodRepository: FoodRepository,
     private val cartRepository: CartRepository
 ) :
-    BaseMvRxViewModel<CategoryState>(state) {
+    MavericksViewModel<CategoryState>(state) {
 
     init {
         foodRepository.getMenu()
-            .subscribeOn(Schedulers.io())
+//            .subscribeOn(Schedulers.io())
             .map { it.filter { food -> food.mainCategory == mainCategory } }
             .execute { copy(menu = it) }
     }
 
     fun addToCart(food: Food) {
-        cartRepository.addToCart(food)
+        viewModelScope.launch {
+            cartRepository.addToCart(food)
+        }
     }
 
     fun addFilter(subCategory: SubCategory) {

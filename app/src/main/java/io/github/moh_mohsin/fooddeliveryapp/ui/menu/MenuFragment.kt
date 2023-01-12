@@ -16,7 +16,7 @@ import io.github.moh_mohsin.fooddeliveryapp.util.toast
 import io.github.moh_mohsin.fooddeliveryapp.util.viewBinding
 import java.util.*
 
-class MenuFragment : Fragment(R.layout.menu_fragment), MvRxView {
+class MenuFragment : Fragment(R.layout.menu_fragment), MavericksView {
 
     private val viewModel: MenuViewModel by fragmentViewModel()
     private val binding by viewBinding(MenuFragmentBinding::bind)

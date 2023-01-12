@@ -4,7 +4,7 @@ Based on [this dribbble design](https://dribbble.com/shots/6571883-Food-Delivery
 
 ## Tech Stack
 * Kotlin
-* [MvRx](https://github.com/airbnb/MvRx)
+* [Mavericks](https://github.com/airbnb/Mavericks)
 * RxJava
 * Kodein (for DI)
 * Navigation Component

@@ -1,8 +1,8 @@
 package io.github.moh_mohsin.fooddeliveryapp.data.source
 
 import io.github.moh_mohsin.fooddeliveryapp.data.model.Food
-import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 
 interface FoodDataSource {
-    fun getMenu(): Observable<List<Food>>
+    fun getMenu(): Flow<List<Food>>
 }

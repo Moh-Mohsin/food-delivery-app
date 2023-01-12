@@ -10,7 +10,7 @@ import io.github.moh_mohsin.fooddeliveryapp.databinding.CategoryFragmentBinding
 import io.github.moh_mohsin.fooddeliveryapp.util.toast
 import io.github.moh_mohsin.fooddeliveryapp.util.viewBinding
 
-class CategoryFragment : Fragment(R.layout.category_fragment), MvRxView {
+class CategoryFragment : Fragment(R.layout.category_fragment), MavericksView {
 
     private val viewModel: CategoryViewModel by fragmentViewModel()
     private val binding by viewBinding(CategoryFragmentBinding::bind)
